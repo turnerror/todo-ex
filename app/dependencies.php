@@ -33,5 +33,15 @@ return function (ContainerBuilder $containerBuilder) {
         return $renderer;
     };
 
+    $container['db'] = new \App\DB\DbConnection();
+
+    $container['TodoValidator'] = new \App\Validators\TodoValidator();
+
+    $container['TodoModel'] = \DI\factory('\App\Factories\TodoModelFactory');
+    $container['TodoPageController'] = \DI\factory('\App\Factories\TodoPageControllerFactory');
+    $container['CreateTodoController'] = \DI\factory('\App\Factories\CreateTodoControllerFactory');
+    $container['MarkTodoDoneController'] = \DI\factory('\App\Factories\MarkTodoDoneControllerFactory');
+    $container['DeleteTodosController'] = \DI\factory('\App\Factories\DeleteTodosControllerFactory');
+
     $containerBuilder->addDefinitions($container);
 };
