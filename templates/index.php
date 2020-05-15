@@ -1,33 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <title>Slim 4</title>
-    <link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
-    <style>
-        body {
-            margin: 50px 0 0 0;
-            padding: 0;
-            width: 100%;
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            text-align: center;
-            color: #aaa;
-            font-size: 18px;
-        }
-
-        h1 {
-            color: #719e40;
-            letter-spacing: -3px;
-            font-family: 'Lato', sans-serif;
-            font-size: 100px;
-            font-weight: 200;
-            margin-bottom: 0;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <title>Todo List</title>
 </head>
 <body>
-<h1>Slim</h1>
-<div>a microframework for PHP</div>
-    <p>Try <a href="http://www.slimframework.com">SlimFramework</a></p>
+<h3> <?php echo $error; ?></h3>
+<form action="/markDone" method="post">
+    <h2>Uncompleted</h2>
+    <ul>
+        <?php echo \App\ViewHelpers\TodoViewHelper::displayUnCompleted($uncompleted); ?>
+    </ul>
+    <div class="form-group">
+        <input type="submit" class="btn btn-success" value="Mark done!">
+    </div>
+    <p><?php echo $markDoneMsg; ?></p>
+</form>
+
+<h2>Completed</h2>
+<form action="/delete" method="post">
+    <ul>
+        <?php echo \App\ViewHelpers\TodoViewHelper::displayCompleted($completed); ?>
+    </ul>
+    <div class="form-group">
+        <input type="submit" class="btn btn-success" value="Delete!">
+    </div>
+    <p><?php echo $deleteMsg; ?></p>
+</form>
+
+<h1>Create Todo</h1>
+<form action="/add" method="post">
+    <div class="form-group">
+        <label>Task</label>
+        <input name="todoName" type="text" class="form-control name">
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-success" value="Create!">
+    </div>
+    <p><?php echo $createMsg; ?></p>
+</form>
+
 </body>
 </html>
+
+
+
